@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import NewExpense from "./components/NewExpense/NewExpense";
 import Expenses from "./components/Expenses/Expenses";
+import useLocalStorage from "hooks/useLocalStorage";
 
 const INITIAL_EXPENSES = [
   {
@@ -30,16 +31,16 @@ const INITIAL_EXPENSES = [
 ];
 
 const App = () => {
-  const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
+  const [localExpenses, setLocalExpenses] = useLocalStorage("expenses", INITIAL_EXPENSES);
 
   const addExpenseHandler = (expense) => {
-    setExpenses((prevExpenses) => [expense, ...prevExpenses]);
+    setLocalExpenses((savedStorage) => [expense,...savedStorage]);
   }
 
   return (
     <div>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses items={expenses}/>
+      <Expenses localExpenses={localExpenses}/>
     </div>
   );
 };

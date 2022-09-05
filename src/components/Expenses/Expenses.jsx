@@ -5,18 +5,22 @@ import ExpensesFilter from './ExpensesFilter';
 import ExpensesChart from './ExpensesChart';
 import ExpensesList from './ExpensesList';
 
-const Expenses = ({ items }) => {
+const Expenses = ({ localExpenses }) => {
   const [filteredYear, setFilteredYear] = useState('');
 
   const filterChangeHandler = selectedYear => {
     setFilteredYear(selectedYear);
   };
 
+  const items = localExpenses.map(obj => {
+    return {...obj, date: new Date(obj.date)}
+  });
+
   const filteredExpenses = !filteredYear
     ? items
-    : items.filter(
-        expense => expense.date.getFullYear().toString() === filteredYear
-      );
+    : items
+      .filter(
+        expense => expense.date.getFullYear().toString() === filteredYear);
 
   return (
     <Card className="expenses">
