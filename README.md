@@ -1,7 +1,7 @@
 # Expenses App
 
 ## Project info
-Design of an application for managing expenses and comparing them in the form of bar charts.
+Project of an application for managing expenses and comparing them in the form of bar charts.
 
 **Project link:** [Expenses App](https://dawidmarek95x.github.io/expenses-app/)
 
